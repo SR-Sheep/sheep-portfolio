@@ -3,7 +3,7 @@ export const projects = [
     id: 1,
     title: '프로젝트 제목 1',
     shortDescription: '프로젝트에 대한 간단한 설명입니다. 사용된 기술과 주요 기능을 설명합니다.',
-    image: 'https://via.placeholder.com/400x250',
+    image: 'https://placehold.co/400x250/667eea/ffffff?text=Project+1',
     tags: ['React', 'JavaScript', 'CSS'],
     githubUrl: 'https://github.com/yourusername/project1',
     liveUrl: 'https://project1-demo.com',
@@ -20,9 +20,9 @@ export const projects = [
         result: '성능 40% 개선, 번들 크기 35% 감소, 사용자 만족도 85% 향상',
         overview: '이 프로젝트는 사용자들이 편리하게 사용할 수 있는 웹 애플리케이션입니다. React를 기반으로 하여 빠르고 반응성 있는 UI를 제공하며, 현대적인 웹 개발 기술을 활용하여 최적의 사용자 경험을 제공합니다.',
         keyScenes: [
-          { image: 'https://via.placeholder.com/400x300/667eea/ffffff?text=메인+화면', caption: '직관적인 메인 화면' },
-          { image: 'https://via.placeholder.com/400x300/764ba2/ffffff?text=대시보드', caption: '실시간 대시보드' },
-          { image: 'https://via.placeholder.com/400x300/f093fb/ffffff?text=상세+기능', caption: '상세 기능 화면' }
+          { image: 'https://placehold.co/400x300/667eea/ffffff?text=Main+Screen', caption: '직관적인 메인 화면' },
+          { image: 'https://placehold.co/400x300/764ba2/ffffff?text=Dashboard', caption: '실시간 대시보드' },
+          { image: 'https://placehold.co/400x300/f093fb/ffffff?text=Details', caption: '상세 기능 화면' }
         ]
       },
       {
@@ -30,42 +30,42 @@ export const projects = [
         type: 'challenge',
         title: '도전 과제 1',
         requirement: '대량의 데이터를 렌더링할 때 성능 저하 문제가 발생했습니다. 1000개 이상의 아이템을 표시할 때 스크롤이 끊기고 응답 속도가 느려졌습니다.',
-        requirementImage: 'https://via.placeholder.com/300x400/ff6b6b/ffffff?text=성능+문제',
+        requirementImage: 'https://placehold.co/300x400/ff6b6b/ffffff?text=Performance+Issue',
         improvements: [
           'React.memo를 활용하여 불필요한 리렌더링 차단',
           'useMemo와 useCallback으로 연산 최적화',
           '가상 스크롤링(Virtual Scrolling) 구현',
           'Lazy Loading으로 초기 로딩 속도 개선'
         ],
-        improvementImage: 'https://via.placeholder.com/600x400/4ecdc4/ffffff?text=최적화+결과'
+        improvementImage: 'https://placehold.co/600x400/4ecdc4/ffffff?text=Optimized'
       },
       {
         // 3페이지: 도전과제 2
         type: 'challenge',
         title: '도전 과제 2',
         requirement: '복잡한 전역 상태 관리로 인해 코드의 복잡도가 증가하고 유지보수가 어려워졌습니다. Props drilling 문제도 발생했습니다.',
-        requirementImage: 'https://via.placeholder.com/300x400/feca57/333333?text=상태+관리+문제',
+        requirementImage: 'https://placehold.co/300x400/feca57/333333?text=State+Issue',
         improvements: [
           'Context API와 useReducer 조합으로 상태 로직 분리',
           '커스텀 훅으로 재사용 가능한 로직 추출',
           '상태를 도메인별로 분리하여 관리',
           '불변성을 유지하는 업데이트 패턴 적용'
         ],
-        improvementImage: 'https://via.placeholder.com/600x400/48dbfb/ffffff?text=개선된+아키텍처'
+        improvementImage: 'https://placehold.co/600x400/48dbfb/ffffff?text=Improved'
       },
       {
         // 4페이지: 도전과제 3
         type: 'challenge',
         title: '도전 과제 3',
         requirement: '번들 크기가 지속적으로 증가하여 초기 로딩 시간이 길어졌습니다. 라이브러리 의존성이 많아지면서 3MB를 초과했습니다.',
-        requirementImage: 'https://via.placeholder.com/300x400/ff9ff3/333333?text=번들+크기+증가',
+        requirementImage: 'https://placehold.co/300x400/ff9ff3/333333?text=Bundle+Size',
         improvements: [
           'Code Splitting으로 라우트별 청크 분리',
           'Dynamic Import를 활용한 Lazy Loading',
           'Tree Shaking으로 미사용 코드 제거',
           '라이브러리 대체 및 경량화 작업 진행'
         ],
-        improvementImage: 'https://via.placeholder.com/600x400/a29bfe/ffffff?text=번들+최적화'
+        improvementImage: 'https://placehold.co/600x400/a29bfe/ffffff?text=Optimized'
       },
       {
         // 5페이지: 성과와 남은 과제
@@ -97,11 +97,11 @@ export const projects = [
     title: '프로젝트 제목 2',
     shortDescription: '프로젝트에 대한 간단한 설명입니다. 사용된 기술과 주요 기능을 설명합니다.',
     fullDescription: '순수 HTML과 CSS만을 사용하여 만든 정적 웹사이트입니다. 시맨틱 HTML과 현대적인 CSS 기법을 활용하여 깔끔하고 접근성 높은 웹사이트를 구현했습니다.',
-    image: 'https://via.placeholder.com/400x250',
+    image: 'https://placehold.co/400x250/ff6b6b/ffffff?text=Project+2',
     images: [
-      'https://via.placeholder.com/800x500/ff6b6b/ffffff?text=랜딩+페이지',
-      'https://via.placeholder.com/800x500/4ecdc4/ffffff?text=서비스+소개',
-      'https://via.placeholder.com/800x500/45b7d1/ffffff?text=반응형+디자인'
+      'https://placehold.co/800x500/ff6b6b/ffffff?text=Landing',
+      'https://placehold.co/800x500/4ecdc4/ffffff?text=Service',
+      'https://placehold.co/800x500/45b7d1/ffffff?text=Responsive'
     ],
     tags: ['HTML', 'CSS', 'Responsive'],
     githubUrl: 'https://github.com/yourusername/project2',
@@ -150,11 +150,11 @@ export const projects = [
     title: '프로젝트 제목 3',
     shortDescription: '프로젝트에 대한 간단한 설명입니다. 사용된 기술과 주요 기능을 설명합니다.',
     fullDescription: 'Node.js와 Express를 사용하여 구축한 RESTful API 서버입니다. 확장 가능한 아키텍처와 보안을 고려한 백엔드 시스템을 설계했습니다.',
-    image: 'https://via.placeholder.com/400x250',
+    image: 'https://placehold.co/400x250/96ceb4/ffffff?text=Project+3',
     images: [
-      'https://via.placeholder.com/800x500/96ceb4/ffffff?text=API+구조도',
-      'https://via.placeholder.com/800x500/ffeaa7/333333?text=데이터베이스+스키마',
-      'https://via.placeholder.com/800x500/dfe6e9/333333?text=인증+플로우'
+      'https://placehold.co/800x500/96ceb4/ffffff?text=API+Architecture',
+      'https://placehold.co/800x500/ffeaa7/333333?text=DB+Schema',
+      'https://placehold.co/800x500/dfe6e9/333333?text=Auth+Flow'
     ],
     tags: ['Node.js', 'Express', 'MongoDB'],
     githubUrl: 'https://github.com/yourusername/project3',
