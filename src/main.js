@@ -92,69 +92,23 @@ document.querySelector('#app').innerHTML = `
     <p>&copy; 2024 Your Name. All rights reserved.</p>
   </footer>
 
-  <!-- 프로젝트 상세 모달 -->
+  <!-- 프로젝트 상세 모달 (5페이지 구조) -->
   <div id="project-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content-new">
       <span class="modal-close">&times;</span>
-      <div class="modal-body">
-        <div class="modal-header">
-          <h2 id="modal-title" class="modal-title"></h2>
-          <div class="modal-meta">
-            <span id="modal-duration" class="modal-meta-item"></span>
-            <span id="modal-role" class="modal-meta-item"></span>
-          </div>
+
+      <!-- 페이지 헤더 -->
+      <div class="modal-header-new">
+        <h2 id="modal-title-new" class="modal-title-new"></h2>
+        <div class="modal-meta-new">
+          <span id="modal-duration-new"></span>
+          <span id="modal-role-new"></span>
         </div>
+      </div>
 
-        <!-- 이미지 갤러리 -->
-        <div class="modal-gallery">
-          <div class="gallery-main">
-            <img id="gallery-main-image" src="" alt="프로젝트 메인 이미지" class="gallery-main-img">
-          </div>
-          <div class="gallery-thumbnails" id="gallery-thumbnails">
-            <!-- 썸네일이 동적으로 추가됩니다 -->
-          </div>
-        </div>
-
-        <div class="modal-info">
-          <div class="modal-section">
-            <h3>프로젝트 개요</h3>
-            <p id="modal-description"></p>
-          </div>
-
-          <!-- 상세 내용 섹션 -->
-          <div id="modal-detailed-sections" class="modal-detailed-sections">
-            <!-- 상세 내용이 동적으로 추가됩니다 -->
-          </div>
-
-          <div class="modal-section">
-            <h3>주요 기능</h3>
-            <ul id="modal-features" class="feature-list"></ul>
-          </div>
-
-          <div class="modal-section">
-            <h3>기술 스택</h3>
-            <div id="modal-tags" class="modal-tags"></div>
-          </div>
-
-          <div class="modal-section">
-            <h3>도전 과제 및 해결</h3>
-            <div id="modal-challenges" class="challenges-list"></div>
-          </div>
-
-          <div class="modal-section">
-            <h3>배운 점</h3>
-            <ul id="modal-learned" class="learned-list"></ul>
-          </div>
-
-          <div class="modal-links">
-            <a id="modal-github" href="#" target="_blank" class="btn btn-primary">
-              <span class="btn-icon">📦</span> GitHub 저장소
-            </a>
-            <a id="modal-live" href="#" target="_blank" class="btn btn-secondary">
-              <span class="btn-icon">🚀</span> 라이브 데모
-            </a>
-          </div>
-        </div>
+      <!-- 페이지 컨텐츠 -->
+      <div id="modal-pages" class="modal-pages">
+        <!-- 페이지가 동적으로 생성됩니다 -->
       </div>
     </div>
   </div>
@@ -189,95 +143,192 @@ function createProjectCards() {
   })
 }
 
+// 현재 프로젝트와 페이지 상태
+let currentProject = null
+let currentPage = 0
+
 // 모달 열기
 function openModal(projectId) {
   const project = projects.find(p => p.id === projectId)
-  if (!project) return
+  if (!project || !project.pages) return
 
-  // 기본 정보
-  document.getElementById('modal-title').textContent = project.title
-  document.getElementById('modal-duration').textContent = project.duration || ''
-  document.getElementById('modal-role').textContent = project.role || ''
-  document.getElementById('modal-description').textContent = project.fullDescription
+  currentProject = project
+  currentPage = 0
 
-  // 이미지 갤러리
-  const images = project.images || [project.image]
-  const mainImage = document.getElementById('gallery-main-image')
-  mainImage.src = images[0]
+  // 헤더 정보
+  document.getElementById('modal-title-new').textContent = project.title
+  document.getElementById('modal-duration-new').textContent = project.duration || ''
+  document.getElementById('modal-role-new').textContent = project.role || ''
 
-  const thumbnailsContainer = document.getElementById('gallery-thumbnails')
-  thumbnailsContainer.innerHTML = images.map((img, index) => `
-    <div class="gallery-thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', ${index})">
-      <img src="${img}" alt="썸네일 ${index + 1}">
-    </div>
-  `).join('')
-
-  // 상세 내용 섹션
-  const detailedSections = document.getElementById('modal-detailed-sections')
-  if (project.detailedDescription && project.detailedDescription.length > 0) {
-    detailedSections.innerHTML = project.detailedDescription.map(section => `
-      <div class="modal-section detailed-section">
-        <h3>${section.title}</h3>
-        <p>${section.content}</p>
-      </div>
-    `).join('')
-  } else {
-    detailedSections.innerHTML = ''
-  }
-
-  // 주요 기능
-  const featuresList = document.getElementById('modal-features')
-  featuresList.innerHTML = project.features.map(feature => `<li>${feature}</li>`).join('')
-
-  // 기술 스택
-  const tagsContainer = document.getElementById('modal-tags')
-  tagsContainer.innerHTML = project.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')
-
-  // 도전 과제
-  const challengesContainer = document.getElementById('modal-challenges')
-  if (Array.isArray(project.challenges)) {
-    challengesContainer.innerHTML = project.challenges.map(challenge => `
-      <div class="challenge-item">
-        <div class="challenge-problem">
-          <span class="challenge-icon">⚠️</span>
-          <strong>문제:</strong> ${challenge.problem}
-        </div>
-        <div class="challenge-solution">
-          <span class="challenge-icon">✅</span>
-          <strong>해결:</strong> ${challenge.solution}
-        </div>
-      </div>
-    `).join('')
-  } else {
-    challengesContainer.innerHTML = `<p>${project.challenges}</p>`
-  }
-
-  // 배운 점
-  const learnedContainer = document.getElementById('modal-learned')
-  if (Array.isArray(project.learned)) {
-    learnedContainer.innerHTML = project.learned.map(item => `<li>${item}</li>`).join('')
-  } else {
-    learnedContainer.innerHTML = `<li>${project.learned}</li>`
-  }
-
-  // 링크
-  document.getElementById('modal-github').href = project.githubUrl
-  document.getElementById('modal-live').href = project.liveUrl
+  // 페이지 생성
+  renderPages()
+  showPage(0)
 
   document.getElementById('project-modal').style.display = 'block'
   document.body.style.overflow = 'hidden'
 }
 
-// 갤러리 메인 이미지 변경
-window.changeMainImage = function(imageSrc, index) {
-  const mainImage = document.getElementById('gallery-main-image')
-  mainImage.src = imageSrc
+// 페이지 렌더링
+function renderPages() {
+  const pagesContainer = document.getElementById('modal-pages')
+  pagesContainer.innerHTML = currentProject.pages.map((page, index) => {
+    let pageHTML = ''
 
-  // 활성 썸네일 업데이트
-  document.querySelectorAll('.gallery-thumbnail').forEach((thumb, i) => {
-    thumb.classList.toggle('active', i === index)
-  })
+    if (page.type === 'overview') {
+      // 1페이지: 개요
+      pageHTML = `
+        <div class="page-content page-overview">
+          <div class="overview-section">
+            <div class="overview-item">
+              <h3>🎯 프로젝트 목표</h3>
+              <p>${page.goal}</p>
+            </div>
+            <div class="overview-item">
+              <h3>✨ 주요 성과</h3>
+              <p>${page.result}</p>
+            </div>
+          </div>
+          <div class="overview-description">
+            <h3>📋 개요</h3>
+            <p>${page.overview}</p>
+          </div>
+          <div class="key-scenes">
+            <h3>🖼️ 주요 장면</h3>
+            <div class="scenes-grid">
+              ${page.keyScenes.map(scene => `
+                <div class="scene-item">
+                  <img src="${scene.image}" alt="${scene.caption}">
+                  <p>${scene.caption}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `
+    } else if (page.type === 'challenge') {
+      // 2-4페이지: 도전과제
+      pageHTML = `
+        <div class="page-content page-challenge">
+          <div class="challenge-layout">
+            <div class="challenge-requirement">
+              <h3>📌 요구사항 및 문제점</h3>
+              <p>${page.requirement}</p>
+              <img src="${page.requirementImage}" alt="문제 상황">
+            </div>
+            <div class="challenge-improvement">
+              <h3>✅ 개선사항 및 해결책</h3>
+              <ul>
+                ${page.improvements.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+              <img src="${page.improvementImage}" alt="개선 결과">
+            </div>
+          </div>
+        </div>
+      `
+    } else if (page.type === 'results') {
+      // 5페이지: 성과와 남은 과제
+      pageHTML = `
+        <div class="page-content page-results">
+          <div class="achievements">
+            <h2>🏆 주요 성과</h2>
+            <div class="achievements-grid">
+              ${page.achievements.map(ach => `
+                <div class="achievement-card">
+                  <h3>${ach.metric}</h3>
+                  <div class="achievement-value">${ach.value}</div>
+                  <p>${ach.description}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="remaining-tasks">
+            <h2>📋 남은 과제</h2>
+            <ul class="tasks-list">
+              ${page.remainingTasks.map(task => `
+                <li class="task-item priority-${task.priority}">
+                  <span class="priority-badge">${task.priority === 'high' ? '높음' : '보통'}</span>
+                  ${task.task}
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          <div class="learned">
+            <h2>💡 배운 점</h2>
+            <ul class="learned-list-new">
+              ${page.learned.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `
+    }
+
+    return `<div class="modal-page" data-page="${index}">${pageHTML}</div>`
+  }).join('')
 }
+
+// 페이지 표시
+window.showPage = function(pageIndex) {
+  if (pageIndex < 0 || pageIndex >= currentProject.pages.length) return
+
+  currentPage = pageIndex
+
+  // 모든 페이지 숨기기
+  document.querySelectorAll('.modal-page').forEach(page => {
+    page.classList.remove('active')
+  })
+
+  // 현재 페이지 표시
+  document.querySelector(`.modal-page[data-page="${pageIndex}"]`).classList.add('active')
+}
+
+// 휠 스크롤로 페이지 전환
+let isScrolling = false
+
+function handleWheel(e) {
+  if (isScrolling) return
+
+  const modalPages = document.getElementById('modal-pages')
+  const modal = document.getElementById('project-modal')
+
+  // 모달이 열려있을 때만 작동
+  if (!modal || modal.style.display !== 'block') return
+
+  // 페이지 내부 스크롤이 끝에 도달했는지 확인
+  const isAtTop = modalPages.scrollTop === 0
+  const isAtBottom = modalPages.scrollHeight - modalPages.scrollTop === modalPages.clientHeight
+
+  if (e.deltaY > 0) {
+    // 아래로 스크롤: 다음 페이지
+    if (isAtBottom && currentPage < currentProject.pages.length - 1) {
+      e.preventDefault()
+      isScrolling = true
+      showPage(currentPage + 1)
+      setTimeout(() => {
+        isScrolling = false
+        modalPages.scrollTop = 0
+      }, 600)
+    }
+  } else {
+    // 위로 스크롤: 이전 페이지
+    if (isAtTop && currentPage > 0) {
+      e.preventDefault()
+      isScrolling = true
+      showPage(currentPage - 1)
+      setTimeout(() => {
+        isScrolling = false
+        modalPages.scrollTop = modalPages.scrollHeight
+      }, 600)
+    }
+  }
+}
+
+// 모달이 열릴 때 휠 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', () => {
+  const modalPages = document.getElementById('modal-pages')
+  if (modalPages) {
+    modalPages.addEventListener('wheel', handleWheel, { passive: false })
+  }
+})
 
 // 모달 닫기
 function closeModal() {

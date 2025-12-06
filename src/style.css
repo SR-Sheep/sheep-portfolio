@@ -455,8 +455,8 @@ a:hover {
   background-color: var(--bg-light);
   margin: 2% auto;
   padding: 0;
-  width: 90%;
-  max-width: 900px;
+  width: 95%;
+  max-width: 1200px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: slideDown 0.3s ease;
@@ -928,5 +928,548 @@ a:hover {
 
   .modal-close {
     padding: 0.5rem 1rem;
+  }
+}
+
+/* ==================== 새로운 5페이지 모달 스타일 ==================== */
+
+.modal-content-new {
+  background-color: var(--bg-light);
+  margin: 2% auto;
+  padding: 0;
+  width: 95%;
+  max-width: 1400px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.modal-content-new .modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 1000;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  line-height: 1;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-content-new .modal-close:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.modal-header-new {
+  padding: 1.5rem 2.5rem 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-title-new {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.modal-meta-new {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* 페이지 컨텐츠 영역 */
+.modal-pages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 2.5rem;
+  position: relative;
+  min-height: 500px;
+}
+
+.modal-page {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-page.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 1페이지: 개요 */
+.page-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.overview-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.overview-item {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.overview-item h3 {
+  margin: 0 0 1rem 0;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.overview-item p {
+  margin: 0;
+  line-height: 1.8;
+  color: #333;
+}
+
+.overview-description {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+}
+
+.overview-description h3 {
+  margin: 0 0 1rem 0;
+  color: var(--primary-color);
+}
+
+.overview-description p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.key-scenes h3 {
+  margin: 0 0 1.5rem 0;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.scenes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.scene-item {
+  text-align: center;
+}
+
+.scene-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scene-item img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.scene-item p {
+  margin: 1rem 0 0 0;
+  color: #666;
+  font-weight: 500;
+}
+
+/* 2-4페이지: 도전과제 */
+.page-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.challenge-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin: 0 0 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.challenge-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  min-height: 400px;
+}
+
+.challenge-requirement {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.challenge-requirement h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.challenge-requirement p {
+  flex: 1;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.challenge-requirement img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: auto;
+}
+
+.challenge-improvement {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.challenge-improvement h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.challenge-improvement ul {
+  flex: 1;
+  margin: 0;
+  padding-left: 1.5rem;
+  line-height: 2;
+}
+
+.challenge-improvement li {
+  margin-bottom: 0.5rem;
+}
+
+.challenge-improvement img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: auto;
+}
+
+/* 5페이지: 성과와 남은 과제 */
+.page-results {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.achievements h2,
+.remaining-tasks h2,
+.learned h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.achievement-card {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.achievement-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.achievement-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.achievement-card p {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.tasks-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.task-item {
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-item.priority-high {
+  border-left-color: #ff6b6b;
+  background: #fff5f5;
+}
+
+.task-item.priority-medium {
+  border-left-color: #feca57;
+  background: #fffef5;
+}
+
+.priority-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+}
+
+.priority-high .priority-badge {
+  background: #ff6b6b;
+}
+
+.priority-medium .priority-badge {
+  background: #feca57;
+}
+
+.learned-list-new {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.learned-list-new li {
+  padding: 1.5rem;
+  padding-left: 3.5rem;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border-radius: 12px;
+  position: relative;
+  line-height: 1.8;
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+}
+
+.learned-list-new li::before {
+  content: "💡";
+  position: absolute;
+  left: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* 페이지네이션 */
+.modal-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  border-top: 2px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.page-indicators {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.page-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: white;
+  color: #666;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-indicator:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.page-indicator.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* 모달 푸터 */
+.modal-footer-new {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 2.5rem;
+  border-top: 2px solid #e0e0e0;
+  background-color: #f8f9fa;
+  border-radius: 0 0 16px 16px;
+}
+
+.modal-footer-new .btn {
+  flex: 1;
+}
+
+/* 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .modal-content-new {
+    background-color: #2a2a2a;
+  }
+
+  .modal-header-new {
+    border-bottom-color: #444;
+  }
+
+  .modal-title-new {
+    color: white;
+  }
+
+  .overview-item,
+  .overview-description {
+    background: #333;
+    color: #eee;
+  }
+
+  .overview-item h3,
+  .overview-description h3 {
+    color: #667eea;
+  }
+
+  .overview-item p,
+  .overview-description p {
+    color: #ddd;
+  }
+
+  .task-item {
+    background: #333;
+    color: #eee;
+  }
+
+  .task-item.priority-high {
+    background: #3a2222;
+  }
+
+  .task-item.priority-medium {
+    background: #3a3322;
+  }
+
+  .modal-pagination,
+  .modal-footer-new {
+    background-color: #1a1a1a;
+    border-top-color: #444;
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .modal-content-new {
+    width: 98%;
+    max-width: none;
+  }
+
+  .scenes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .challenge-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-pages {
+    padding: 1.5rem;
+  }
+
+  .modal-header-new {
+    padding: 1.5rem;
+  }
+
+  .modal-title-new {
+    font-size: 1.5rem;
+  }
+
+  .overview-section {
+    grid-template-columns: 1fr;
+  }
+
+  .scenes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tasks-list {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-pagination {
+    padding: 1rem 1.5rem;
+  }
+
+  .page-indicator {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
   }
 }

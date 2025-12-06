@@ -3,58 +3,93 @@ export const projects = [
     id: 1,
     title: '프로젝트 제목 1',
     shortDescription: '프로젝트에 대한 간단한 설명입니다. 사용된 기술과 주요 기능을 설명합니다.',
-    fullDescription: '이 프로젝트는 사용자들이 편리하게 사용할 수 있는 웹 애플리케이션입니다. React를 기반으로 하여 빠르고 반응성 있는 UI를 제공하며, 현대적인 웹 개발 기술을 활용하여 최적의 사용자 경험을 제공합니다.',
     image: 'https://via.placeholder.com/400x250',
-    images: [
-      'https://via.placeholder.com/800x500/667eea/ffffff?text=메인+화면',
-      'https://via.placeholder.com/800x500/764ba2/ffffff?text=대시보드',
-      'https://via.placeholder.com/800x500/f093fb/ffffff?text=상세+기능',
-      'https://via.placeholder.com/800x500/4facfe/ffffff?text=모바일+뷰'
-    ],
     tags: ['React', 'JavaScript', 'CSS'],
     githubUrl: 'https://github.com/yourusername/project1',
     liveUrl: 'https://project1-demo.com',
     duration: '2024.01 - 2024.03 (3개월)',
     role: '프론트엔드 개발 (개인 프로젝트)',
-    features: [
-      '반응형 디자인으로 모든 디바이스에서 최적화',
-      '실시간 데이터 업데이트 기능',
-      '사용자 친화적인 인터페이스',
-      '빠른 성능과 최적화된 번들 크기'
-    ],
-    detailedDescription: [
+
+    // 5페이지 구조 데이터
+    pages: [
       {
-        title: '프로젝트 배경',
-        content: '사용자들이 더 나은 경험을 할 수 있도록 직관적이고 빠른 웹 애플리케이션을 만들고자 시작했습니다. 기존의 복잡한 인터페이스를 개선하고, 최신 웹 기술을 적용하여 사용성을 극대화했습니다.'
+        // 1페이지: 목표, 결과, 개요, 주요장면
+        type: 'overview',
+        title: '프로젝트 개요',
+        goal: 'React 기반의 고성능 웹 애플리케이션을 구축하여 사용자 경험을 극대화하고, 재사용 가능한 컴포넌트 아키텍처를 설계합니다.',
+        result: '성능 40% 개선, 번들 크기 35% 감소, 사용자 만족도 85% 향상',
+        overview: '이 프로젝트는 사용자들이 편리하게 사용할 수 있는 웹 애플리케이션입니다. React를 기반으로 하여 빠르고 반응성 있는 UI를 제공하며, 현대적인 웹 개발 기술을 활용하여 최적의 사용자 경험을 제공합니다.',
+        keyScenes: [
+          { image: 'https://via.placeholder.com/400x300/667eea/ffffff?text=메인+화면', caption: '직관적인 메인 화면' },
+          { image: 'https://via.placeholder.com/400x300/764ba2/ffffff?text=대시보드', caption: '실시간 대시보드' },
+          { image: 'https://via.placeholder.com/400x300/f093fb/ffffff?text=상세+기능', caption: '상세 기능 화면' }
+        ]
       },
       {
-        title: '주요 구현 사항',
-        content: 'React Hooks를 활용한 상태 관리, Context API를 통한 전역 상태 관리, React Router를 이용한 SPA 라우팅, Lazy Loading을 통한 성능 최적화를 구현했습니다.'
+        // 2페이지: 도전과제 1
+        type: 'challenge',
+        title: '도전 과제 1',
+        requirement: '대량의 데이터를 렌더링할 때 성능 저하 문제가 발생했습니다. 1000개 이상의 아이템을 표시할 때 스크롤이 끊기고 응답 속도가 느려졌습니다.',
+        requirementImage: 'https://via.placeholder.com/300x400/ff6b6b/ffffff?text=성능+문제',
+        improvements: [
+          'React.memo를 활용하여 불필요한 리렌더링 차단',
+          'useMemo와 useCallback으로 연산 최적화',
+          '가상 스크롤링(Virtual Scrolling) 구현',
+          'Lazy Loading으로 초기 로딩 속도 개선'
+        ],
+        improvementImage: 'https://via.placeholder.com/600x400/4ecdc4/ffffff?text=최적화+결과'
       },
       {
-        title: '기술적 의사결정',
-        content: '프로젝트 규모와 복잡도를 고려하여 Redux 대신 Context API를 선택했습니다. 번들 크기를 최소화하고 학습 곡선을 낮추기 위한 선택이었으며, 실제로 개발 속도와 유지보수성이 향상되었습니다.'
+        // 3페이지: 도전과제 2
+        type: 'challenge',
+        title: '도전 과제 2',
+        requirement: '복잡한 전역 상태 관리로 인해 코드의 복잡도가 증가하고 유지보수가 어려워졌습니다. Props drilling 문제도 발생했습니다.',
+        requirementImage: 'https://via.placeholder.com/300x400/feca57/333333?text=상태+관리+문제',
+        improvements: [
+          'Context API와 useReducer 조합으로 상태 로직 분리',
+          '커스텀 훅으로 재사용 가능한 로직 추출',
+          '상태를 도메인별로 분리하여 관리',
+          '불변성을 유지하는 업데이트 패턴 적용'
+        ],
+        improvementImage: 'https://via.placeholder.com/600x400/48dbfb/ffffff?text=개선된+아키텍처'
+      },
+      {
+        // 4페이지: 도전과제 3
+        type: 'challenge',
+        title: '도전 과제 3',
+        requirement: '번들 크기가 지속적으로 증가하여 초기 로딩 시간이 길어졌습니다. 라이브러리 의존성이 많아지면서 3MB를 초과했습니다.',
+        requirementImage: 'https://via.placeholder.com/300x400/ff9ff3/333333?text=번들+크기+증가',
+        improvements: [
+          'Code Splitting으로 라우트별 청크 분리',
+          'Dynamic Import를 활용한 Lazy Loading',
+          'Tree Shaking으로 미사용 코드 제거',
+          '라이브러리 대체 및 경량화 작업 진행'
+        ],
+        improvementImage: 'https://via.placeholder.com/600x400/a29bfe/ffffff?text=번들+최적화'
+      },
+      {
+        // 5페이지: 성과와 남은 과제
+        type: 'results',
+        title: '성과와 남은 과제',
+        achievements: [
+          { metric: '성능 개선', value: '40% 향상', description: 'Lighthouse 성능 점수 60점에서 95점으로' },
+          { metric: '번들 크기', value: '35% 감소', description: '3.2MB에서 2.1MB로 축소' },
+          { metric: '로딩 속도', value: '2.5배 개선', description: '초기 로딩 시간 6초에서 2.4초로' },
+          { metric: '코드 품질', value: '유지보수성 향상', description: '컴포넌트 재사용률 70% 달성' }
+        ],
+        remainingTasks: [
+          { task: 'E2E 테스트 커버리지 확대', priority: 'high' },
+          { task: 'PWA 기능 추가', priority: 'medium' },
+          { task: '다국어 지원 구현', priority: 'medium' },
+          { task: '접근성(a11y) 개선', priority: 'high' }
+        ],
+        learned: [
+          'React 성능 최적화의 실전 기법과 측정 방법',
+          '대규모 애플리케이션에서의 상태 관리 아키텍처',
+          '번들 최적화와 사용자 경험의 균형점 찾기',
+          '지속적인 성능 모니터링의 중요성'
+        ]
       }
-    ],
-    challenges: [
-      {
-        problem: '대량의 데이터 렌더링 시 성능 저하',
-        solution: 'React.memo와 useMemo를 활용한 불필요한 리렌더링 방지, 가상 스크롤링(Virtual Scrolling) 구현으로 1000개 이상의 아이템도 부드럽게 렌더링되도록 최적화했습니다.'
-      },
-      {
-        problem: '복잡한 전역 상태 관리',
-        solution: 'Context API와 useReducer를 조합하여 상태 로직을 분리하고, 커스텀 훅으로 재사용 가능한 상태 관리 로직을 구현했습니다.'
-      },
-      {
-        problem: '번들 크기 증가 문제',
-        solution: 'Code Splitting과 Lazy Loading을 적용하여 초기 번들 크기를 40% 감소시켰고, Tree Shaking으로 사용하지 않는 코드를 제거했습니다.'
-      }
-    ],
-    learned: [
-      'React Hooks(useState, useEffect, useCallback, useMemo)의 심화 활용법과 성능 최적화 기법',
-      '컴포넌트 재사용성을 높이는 설계 패턴(Compound Components, Render Props)',
-      'Web Vitals 지표를 활용한 실제 사용자 경험 측정 및 개선 방법',
-      '번들 분석 도구를 활용한 성능 병목 지점 파악 및 해결 프로세스'
     ]
   },
   {
