@@ -138,12 +138,12 @@ document.querySelector('#app').innerHTML = `
 
           <div class="modal-section">
             <h3>도전 과제 및 해결</h3>
-            <p id="modal-challenges"></p>
+            <div id="modal-challenges" class="challenges-list"></div>
           </div>
 
           <div class="modal-section">
             <h3>배운 점</h3>
-            <p id="modal-learned"></p>
+            <ul id="modal-learned" class="learned-list"></ul>
           </div>
 
           <div class="modal-links">
@@ -233,9 +233,32 @@ function openModal(projectId) {
   const tagsContainer = document.getElementById('modal-tags')
   tagsContainer.innerHTML = project.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('')
 
-  // 도전 과제 및 배운 점
-  document.getElementById('modal-challenges').textContent = project.challenges
-  document.getElementById('modal-learned').textContent = project.learned
+  // 도전 과제
+  const challengesContainer = document.getElementById('modal-challenges')
+  if (Array.isArray(project.challenges)) {
+    challengesContainer.innerHTML = project.challenges.map(challenge => `
+      <div class="challenge-item">
+        <div class="challenge-problem">
+          <span class="challenge-icon">⚠️</span>
+          <strong>문제:</strong> ${challenge.problem}
+        </div>
+        <div class="challenge-solution">
+          <span class="challenge-icon">✅</span>
+          <strong>해결:</strong> ${challenge.solution}
+        </div>
+      </div>
+    `).join('')
+  } else {
+    challengesContainer.innerHTML = `<p>${project.challenges}</p>`
+  }
+
+  // 배운 점
+  const learnedContainer = document.getElementById('modal-learned')
+  if (Array.isArray(project.learned)) {
+    learnedContainer.innerHTML = project.learned.map(item => `<li>${item}</li>`).join('')
+  } else {
+    learnedContainer.innerHTML = `<li>${project.learned}</li>`
+  }
 
   // 링크
   document.getElementById('modal-github').href = project.githubUrl
