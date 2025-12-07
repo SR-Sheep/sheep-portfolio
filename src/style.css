@@ -1291,25 +1291,27 @@ a:hover {
   list-style: none;
   padding: 0;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 .learned-list-new li {
-  padding: 1.5rem;
-  padding-left: 3.5rem;
+  padding: 1rem;
+  padding-left: 2.5rem;
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
-  border-radius: 12px;
+  border-radius: 8px;
   position: relative;
-  line-height: 1.8;
-  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+  line-height: 1.5;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(240, 147, 251, 0.2);
 }
 
 .learned-list-new li::before {
   content: "💡";
   position: absolute;
-  left: 1.5rem;
-  font-size: 1.5rem;
+  left: 0.75rem;
+  font-size: 1.2rem;
 }
 
 /* 페이지네이션 */
@@ -1460,6 +1462,10 @@ a:hover {
   }
 
   .tasks-list {
+    grid-template-columns: 1fr;
+  }
+
+  .learned-list-new {
     grid-template-columns: 1fr;
   }
 
